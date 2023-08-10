@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+{% load static %}
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+  <link rel="stylesheet" href="{% static "css/style_one.css" %}">
+  <link rel="stylesheet" href="{% static "css/style.css" %}">
+  <link href="https://fonts.googleapis.com/css?family=Spicy+Rice&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Viga&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Fredoka+One&display=swap" rel="stylesheet">
+  </head>
+
+{% block content %}
+
+<br><br><br>
+<body>
+<div class="container">
+  <h1>Cancel this Hotel booking ...?</h1>
+</div></body><br><br>
+
+{% for i in Hotel %}
+
+  <div class="hotel">
+    <div class="container">
+      <div class="row shadow-lg p-3 mt-5 mb-5 rounded">
+        <div class="col-md-4 ">
+          <img class="h-img shadow-lg" src="{{ i.image1.url }}" alt="image">
+        </div>
+        <div class="col-md-8">
+          <p class="roomrem">Booked Rooms:{{ room }}</p>
+          <p class="h-name">{{i.hotel_name}}</p>
+          <p class="h-add">{{i.hotel_address}}.<br>{{ i.dist_from_airport }} KM from nearest airport.</p>
+          <p class="h-price">{{ price }}*</p>
+          <p class="h-pricex">/night</p>
+          <p class="h-am">{{ i.amenities}}</p>
+
+          <div class="h-rate">
+                {% with ''|center:i.hotel_rating as range %}
+                  {% for _ in range %}
+                      ★
+                  {% endfor %}
+                {% endwith %}
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+  <br><br>
+  <a href="/concanhotel/{{ i.hotel_name }}/{{ date }}/{{ room }}" class="btn btn-primary">C A N C E L</a>
+  <a href="{% url 'home' %}" class="btn btn-primary">Go to homepage</a>
+
+      {% endfor %}
+
+{% endblock %}
+</html>

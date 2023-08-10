@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+{% load static %}
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+  <link rel="stylesheet" href="{% static "css/style_one.css" %}">
+  <link rel="stylesheet" href="{% static "css/style.css" %}">
+  <link href="https://fonts.googleapis.com/css?family=Spicy+Rice&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Viga&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Fredoka+One&display=swap" rel="stylesheet">
+  </head>
+
+{% block content %}
+<br><br><br>
+<body>
+<div class="container">
+  <h1>Cancel this flight booking ...?</h1>
+</div></body><br><br>
+
+{% for i in Flight %}
+  <div class="container">
+    <div class="ticket shadow-lg p-3 mb-5">
+      <div class="row bg1">
+        <h3>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp{{ i.company }}-</h3><h4>{{i.flight_num}}</h4>
+      </div>
+      <div class="row bg1">
+        <p class="seatrem">Seats: {{seat}}</p>
+      <p class="from">FROM: <br>{{ i.source }} </p>
+      <p class="to">TO:<br>{{i.destination}}</p>
+      <p class="dept">DEPT TIME:<br> {{ i.dept_time}}</p>
+      <p class="dest">DEST TIME: <br>{{ i.dest_time}}</p>
+      <p class="eprice">{{price}}*</p>
+      </div>
+    </div>
+  </div>
+
+  <br><br>
+
+  <a href="/concanflight/{{ i.flight_num }}/{{ date }}/{{ seat }}" class="btn btn-primary">C A N C E L</a>
+  <a href="{% url 'home' %}" class="btn btn-primary">Go to homepage</a>
+{% endfor %}
+
+{% endblock %}
+</html>

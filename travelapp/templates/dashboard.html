@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+{% load static %}
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+  <link rel="stylesheet" href="{% static "css/style_one.css" %}">
+  <link rel="stylesheet" href="{% static "css/style.css" %}">
+  <link href="https://fonts.googleapis.com/css?family=Spicy+Rice&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Viga&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Fredoka+One&display=swap" rel="stylesheet">
+<style>
+      .btn{
+        margin-left: 0;
+      }
+    .hg{
+      background: #1eb2a6;
+      margin-bottom: 2px;
+    }
+    .gd{
+      border-bottom: 1px solid black;
+    }
+    .hg1{
+      background: #f57b51;
+      margin-bottom: 2px;
+    }
+    .hg2{
+      background: #fdd365;
+      margin-bottom: 2px;
+    }
+    .flights-d{
+      height: 100vh;
+      background: linear-gradient(to left,#ede59a,#d5c455,#fddb3a);
+    }
+    .hotels-d{
+      height: 100vh;
+      background: linear-gradient(to left,#fea5ad,#ea9abb,#be8abf);
+    }
+    .package-d{
+      background: linear-gradient(to left,#550a46,#f9f6f7,#9aceff);
+      height: 100vh;
+    }
+    .block-f {
+        position: absolute;
+        left: 42%;
+
+    }
+    .block-h {
+    position: absolute;
+    left: 40%;
+
+    }
+    .block-p {
+    position: absolute;
+    left: 37%;
+    }
+    </style>
+
+  </head>
+
+{% block content %}
+<body>
+
+  <div class="flights-d">
+    <br><br>
+<br><br>
+      <div class="block-f">
+    <h2>Flights</h2><br><br>
+    <table class=" shadow-lg rounded">
+      <tr>
+      <th class="p-3 hg">Flight Number</th>
+        <th class="p-3 hg">Date</th>
+        <th class="p-3 hg">Seats</th>
+        <th class="p-3 hg">Cancel</th>
+      </tr>
+
+    {% for i in flights %}
+    <tr>
+    <td class="p-3 gd bg-light"><p>{{ i.flight }}</p></td>
+    <td class="p-3 gd bg-light"><p>{{ i.date }}</p></td>
+    <td class="p-3 gd bg-light" ><p>{{ i.seat }}</p></td>
+    <td class="p-3 gd bg-light"><a class="btn btn1 btn-primary" href="/cancelflight/{{ i.flight }}/{{ i.date }}/{{ i.seat }}">CANCEL</a></td>
+    </tr>
+
+
+
+    {% endfor %}
+    </table>
+    <br><br>
+    <a href="{% url 'flights' %}" class="btn btn-primary">BOOK FLIGHTS</a>
+    <br><br>
+          <a href="{% url 'home' %}" class="btn btn-secondary">Go to homepage</a>
+          <br/><br/>
+          </div>
+  </div>
+
+
+  <div class="hotels-d">
+    <br><br><br><br>
+      <div class="block-h">
+    <h2>Hotels</h2><br><br>
+    <table class=" shadow-lg rounded">
+      <tr>
+      <th class="p-3 hg1">Hotel Name</th>
+        <th class="p-3 hg1">Date</th>
+        <th class="p-3 hg1">Rooms</th>
+        <th class="p-3 hg1">Cancel</th>
+      </tr>
+    {% for j in hotels %}
+    <tr>
+      <td class="p-3 gd bg-light"><p>{{ j.hotel_name }}</p></td>
+      <td class="p-3 gd bg-light"><p>{{ j.date }}</p></td>
+      <td class="p-3 gd bg-light"><p>{{ j.room }}</p></td>
+      <td class="p-3 gd bg-light"><a class="btn btn-primary" href="/cancelhotel/{{ j.hotel_name }}/{{ j.date }}/{{ j.room }}">CANCEL</a></td>
+
+    </tr>
+
+    {% endfor %}
+    </table><br><br>
+    <a href="{% url 'hotels' %}" class="btn btn-primary">BOOK HOTEL</a>
+    <br><br>
+    <a href="{% url 'home' %}" class="btn btn-secondary">Go to homepage</a>
+          <br/><br/>
+          </div>
+  </div>
+
+  <div class="package-d"><br><br><br><br>
+      <div class="block-p">
+    <h2>Packages</h2><br><br>
+    <table class=" shadow-lg rounded">
+      <tr>
+      <th class="p-3 hg2">Flight Number</th>
+      <th class="p-3 hg2">Seats</th>
+      <th class="p-3 hg2">Hotel Name</th>
+        <th class="p-3 hg2">Rooms</th>
+        <th class="p-3 hg2">Date</th>
+        <th class="p-3 hg2">Cancel</th>
+      </tr>
+    {% for k in packages %}
+    <tr>
+    <td class="p-3 gd bg-light"><p>{{ k.flight }}</p></td>
+    <td class="p-3 gd bg-light"><p>{{ k.seat }}</p></td>
+    <td class="p-3 gd bg-light"><p>{{ k.hotel_name }}</p></td>
+    <td class="p-3 gd bg-light"><p>{{ k.room }}</p></td>
+    <td class="p-3 gd bg-light bg-light"><p>{{ k.date }}</p></td>
+    <td class="p-3 gd bg-light"><a class="btn btn-primary" href="/cancelpackage/{{ k.flight }}/{{ k.seat }}/{{ k.hotel_name }}/{{ k.date }}/{{ k.room }}">CANCEL</a></td>
+    </tr>
+    {% endfor %}
+    </table><br><br>
+    <a href="{% url 'package' %}" class="btn btn-primary">BOOK PACKAGE</a>
+    <br><br>
+          <a href="{% url 'home' %}" class="btn btn-secondary">Go to homepage</a>
+          <br/><br/>
+    </div>
+  </div>
+
+{% endblock %}
+
+
+  </body>
+</html>

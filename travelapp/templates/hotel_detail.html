@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <title>Your Page Title</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static "css/style_one.css" %}">
+    <link rel="stylesheet" href="{% static "css/style.css" %}">
+    <link href="https://fonts.googleapis.com/css?family=Spicy+Rice&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Viga&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Fredoka+One&display=swap" rel="stylesheet">
+
+</head>
+<style>
+body
+{
+  padding: 30px;
+  background-color: #fcfcfc;
+}
+.outer-div
+{
+  padding: 30px;
+
+}
+.inner-div
+{
+  margin: 0 auto;
+  max-width: 1000px;
+  height: 100px;
+  border-radius: 3px;
+}
+
+</style>
+
+<body>
+
+<div class="outer-div">
+    <div class="inner-div">
+
+        <h1>{{ hotel.hotel_name }}</h1>
+        <br>
+        <img src="{{ hotel.image1.url }}" alt="{{ hotel.hotel_name }}" width="1000">
+        <br><br><br>
+
+
+        <h3>Hotel Address:</h3>
+        <p>{{ hotel.hotel_address }}</p>
+
+        <h3>Price:</h3>
+        <p>{{ hotel.hotel_price }} $</p>
+
+        <h3>Hotel Rating:</h3>
+        {% with ''|center:hotel.hotel_rating as range %}
+            {% for _ in range %}
+                ★
+            {% endfor %}
+        {% endwith %}
+
+        <br><br>
+        <h3>Amenities:</h3>
+        <p>{{ hotel.amenities }}</p>
+        <br/>
+        <h3>{{ hotel.dist_from_airport }} KM from the nearest airport!</h3>
+        <br/><br/><br/>
+
+        <hr/>
+        <h2>Descriptions:</h2>
+                <br/>
+                <p>{{ hotel.description }}</p>
+        <br>
+        <br>
+
+        <hr/>
+        <h1>Reviews:</h1>
+        <br/>
+        {% if not hotel.reviews.all %}
+            No Reviews Yet...<a href="{% url 'add_review' hotel.pk %}">Add One</a>
+        {% else %}
+        <a href="{% url 'add_review' hotel.pk %}">Add Review</a>
+        <br/><br/>
+            {% for review in reviews %}
+            <div class="review">
+                <strong>
+                    {{ review.user.username }} -
+                    {{ review.created_date }}
+                </strong>
+                <p>{{ review.text }}</p>
+            </div>
+            {% endfor %}
+
+        <a href="{% url 'add_review' hotel.pk %}">Add Review</a>
+
+        {% endif %}
+        <br/>
+            <hr/>
+            <br/>
+
+            <button class="btn btn-primary" onclick="goBack()">Go Back</button>
+
+            <br/>
+            <br/>
+            <br/>
+    </div>
+</div>
+
+<script>
+    function goBack() {
+        window.history.back();
+    }
+</script>
+
+
+</body>
+</html>
