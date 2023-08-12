@@ -121,7 +121,7 @@ def package_view(request):
             source = form.cleaned_data['source'].upper()
             date = form.cleaned_data['date']
             destination = form.cleaned_data['destination'].upper()
-            flights = Flights.objects.filter(source=source, destination=destination)
+            flights = Flights.objects.filter(source__iexact=source, destination__iexact=destination)
             famplaces = Famous.objects.filter(city__city__contains=destination)
             hotels = Hotels.objects.filter(city__city__contains=destination)
             response = {

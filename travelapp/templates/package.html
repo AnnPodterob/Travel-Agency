@@ -35,27 +35,27 @@
 <h1 class="t">FLIGHTS</h1>
 
     <div class="main">
+        <br><br>
+      {% for i in Flights %}
 
-      <br><br>
-    {% for i in Flights %}
+        <div class="container">
 
-    <div class="container">
-
-      <div class="ticket shadow-lg p-3 mb-5">
-        <div class="row bg1">
-          <h3>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp{{ i.company }}-</h3><h4>{{i.flight_number}}</h4>
+          <div class="ticket shadow-lg p-3 mb-5">
+            <div class="row bg1">
+              <h3>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp{{ i.company }}-</h3><h4>{{i.flight_number}}</h4>
+            </div>
+            <div class="row bg1">
+            <p class="from">FROM: <br>{{ i.source }} </p>
+            <p class="to">TO:<br>{{i.destination}}</p>
+            <p class="dept">DEPT TIME:<br> {{ i.dept_time}}</p>
+            <p class="dest">DEST TIME: <br>{{ i.dest_time}}</p>
+            <p class="eprice">{{ i.eprice}}*</p>
+            </div>
+          </div>
         </div>
-        <div class="row bg1">
-        <p class="from">FROM: <br>{{ i.source }} </p>
-        <p class="to">TO:<br>{{i.destination}}</p>
-        <p class="dept">DEPT TIME:<br> {{ i.dept_time}}</p>
-        <p class="dest">DEST TIME: <br>{{ i.dest_time}}</p>
-        <p class="eprice">{{ i.eprice}}*</p>
-        </div>
-      </div>
+      {% endfor %}
     </div>
-    {% endfor %}
-    </div><br><br><br><br>
+    <br><br><br><br>
 
 <h1 class="t">HOTELS</h1>
     {% for j in Hotels %}
