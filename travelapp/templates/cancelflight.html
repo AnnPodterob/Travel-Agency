@@ -23,7 +23,7 @@
   <div class="container">
     <div class="ticket shadow-lg p-3 mb-5">
       <div class="row bg1">
-        <h3>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp{{ i.company }}-</h3><h4>{{i.flight_num}}</h4>
+        <h3>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp{{ i.company }}-</h3><h4>{{i.flight_number}}</h4>
       </div>
       <div class="row bg1">
         <p class="seatrem">Seats: {{seat}}</p>
@@ -38,7 +38,7 @@
 
   <br><br>
 
-  <a href="/concanflight/{{ i.flight_num }}/{{ date }}/{{ seat }}" class="btn btn-primary">C A N C E L</a>
+  <a href="/concanflight/{{ i.flight_number }}/{{ date }}/{{ seat }}" class="btn btn-primary">C A N C E L</a>
   <a href="{% url 'home' %}" class="btn btn-primary">Go to homepage</a>
 {% endfor %}
 

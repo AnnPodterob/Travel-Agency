@@ -62,9 +62,10 @@ class Famous(models.Model):
 
 class BookFlight(models.Model):
     username_id = models.ForeignKey(User, on_delete=models.CASCADE)
-    flight = models.CharField(max_length=100)
+    flight = models.CharField(max_length=10)
     date = models.CharField(max_length=20)
     seat = models.IntegerField(default=1)
+
 
     def __str__(self):
         return self.date
