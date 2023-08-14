@@ -12,7 +12,6 @@
 
   <body>
 
-    <a href="{{request.META.HTTP_REFERER}}" class="btn btn-secondary">Go back</a>
 
         <br><br><br>
         <div class="fh">
@@ -26,6 +25,7 @@
             {{form.as_p}}
             <button class="btn btn-primary">SEARCH</button>
           </form></div>
+              <a href="{{request.META.HTTP_REFERER}}" class="btn btn-secondary">Go back</a>
           <div class="col-md-3"></div>
         </div>
         </div>
